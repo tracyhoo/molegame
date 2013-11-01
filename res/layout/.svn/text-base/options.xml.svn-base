@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res/org.void1898.www.mixedcolor"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@drawable/menu_bg">
+	<ScrollView android:id="@+id/scrollview2"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical" android:paddingTop="35dip"
+		android:paddingBottom="50dip">
+		<LinearLayout android:orientation="vertical"
+			android:layout_height="fill_parent" android:layout_width="fill_parent"
+			android:paddingLeft="15dip" android:paddingRight="15dip">
+			<CheckBox android:id="@+id/options_vibrate_checkbox"
+				android:layout_width="fill_parent" android:layout_height="50dip"
+				android:text="@string/options_vibrate_summary" android:textColor="#FF000000"></CheckBox>
+			<CheckBox android:id="@+id/options_sounds_checkbox"
+				android:layout_width="fill_parent" android:layout_height="50dip"
+				android:text="@string/options_sounds_summary" android:textColor="#FF000000"></CheckBox>
+			<CheckBox android:id="@+id/options_showtips_checkbox"
+				android:layout_width="fill_parent" android:layout_height="50dip"
+				android:text="@string/options_showtips_summary" android:textColor="#FF000000"></CheckBox>
+			<TableRow android:id="@+id/options_buttom_tablerow"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:paddingTop="20dip">
+				<Button android:id="@+id/options_okay_button"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_weight="1" android:layout_gravity="center"
+					android:text="@string/options_okay" android:textSize="16sp" />
+				<Button android:id="@+id/options_cancel_button" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:layout_gravity="center"
+					android:text="@string/options_cancel" 
+					android:textSize="16sp"></Button>
+			</TableRow>
+		</LinearLayout>
+	</ScrollView>
+</FrameLayout>

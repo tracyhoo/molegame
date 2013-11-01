@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res/org.void1898.www.mixedcolor"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@drawable/menu_bg">
+	<ScrollView android:id="@+id/scrollview"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical" android:paddingTop="35dip"
+		android:paddingBottom="50dip">
+		<TableLayout android:id="@+id/ranking_table"
+			android:layout_height="fill_parent" android:layout_width="fill_parent">
+		</TableLayout>
+	</ScrollView>
+</FrameLayout>

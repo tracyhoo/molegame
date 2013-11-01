@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:admobsdk="http://schemas.android.com/apk/res/org.void1898.www.agilebuddy"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+	<dev.game.molegame.MoleGameView
+		android:id="@+id/mole_game" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" />
+</FrameLayout>

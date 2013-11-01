@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/molegame/!svn/ver/2/src/dev/game/molegame/data
+END
+HoleData.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/molegame/!svn/ver/2/src/dev/game/molegame/data/HoleData.java
+END
+HittableData.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/molegame/!svn/ver/2/src/dev/game/molegame/data/HittableData.java
+END
+MoleData.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/molegame/!svn/ver/2/src/dev/game/molegame/data/MoleData.java
+END
+RectArea.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/molegame/!svn/ver/2/src/dev/game/molegame/data/RectArea.java
+END
+DataHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/molegame/!svn/ver/2/src/dev/game/molegame/data/DataHelper.java
+END
+SparkData.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/molegame/!svn/ver/2/src/dev/game/molegame/data/SparkData.java
+END
