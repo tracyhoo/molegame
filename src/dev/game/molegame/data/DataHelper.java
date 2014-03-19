@@ -32,21 +32,26 @@ public class DataHelper {
 		openHelper = new OpenHelper(this.context);
 		Log.v(TAG,"3");
 		
-		selectAll();
+		getAllRecords();
 	}
 	
 	public void close(){
 		this.db.close();
 	}
-	
+
+    /**
+     * check if this is the new highest score
+     * @param score
+     * @return
+     */
 	public boolean isNewHighScore(int score){
-	
+
 		for(ScorePair sp:scores){
-			if(sp.score < score){
-				return true;
+			if(sp.score > score){
+                return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public int getBest(){
@@ -57,7 +62,8 @@ public class DataHelper {
 		
 		int i=0;
 		Log.v(TAG,"score to update is "+Long.toString(pair.score));
-		
+
+        //todo
 		while(scores.get(i).score >= pair.score && i <4){
 			i++;
 		}
@@ -92,9 +98,10 @@ public class DataHelper {
 		this.db.close();
 	}
 	
-	public List<ScorePair> selectAll() {
+	public List<ScorePair> getAllRecords() {
 		scores.clear();
 		this.db = openHelper.getReadableDatabase();
+        //todo check better way to use sqlite
 		Cursor cursor = this.db.query(
 				TABLE_NAME,
 				new String[] { "_ID","score","name","time" },
@@ -105,7 +112,7 @@ public class DataHelper {
 				ScorePair sp = new ScorePair();
 				sp.score = cursor.getInt(1);
 				sp.name = cursor.getString(2);
-				sp.time = cursor.getString(3);
+				sp.time = cursor.getLong(3);
 				scores.add(sp);
 				Log.v(TAG,"name is"+sp.name);
 				Log.v(TAG,"_ID "+cursor.getInt(0));
@@ -124,12 +131,12 @@ public class DataHelper {
 	public class ScorePair{
 		public String name;
 		public int score;
-		public String time;
+		public long time;
 		
 		public ScorePair(String _name,int _score){
 			name = _name;
 			score = _score;
-			time = Long.toString(System.currentTimeMillis());
+			time = System.currentTimeMillis();
 		}
 		
 		public ScorePair(){
@@ -149,14 +156,11 @@ public class DataHelper {
 			_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 			SCORE + " INT, " + 
 			NAME + " STRING, " + 
-			TIME + " STRING" + ");";
+			TIME + " LONG" + ");";
 
 		public OpenHelper(Context context) {
 
-			super(context,
-					DATABASE_NAME, 
-					null,
-					DATABASE_VERSION);
+			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 			
 			Log.v(TAG,SCORE_TABLE_CREATE);
 			Log.v(TAG,"openhepler");
@@ -169,12 +173,12 @@ public class DataHelper {
 			
 			for(int i=1;i<=5;i++){
 				
-				insert(0,"","", db);
+				insert(0, "", 0l, db);
 			}	
 			Log.v(TAG,"on create finished");
 		}
 
-		private void insert(long score,String name,String time,SQLiteDatabase db) {
+		private void insert(long score,String name,Long time,SQLiteDatabase db) {
 			ContentValues values = new ContentValues();
 			values.put(SCORE, score);
 			values.put(NAME, name);
@@ -187,8 +191,7 @@ public class DataHelper {
 		public void onUpgrade(SQLiteDatabase db,
 				int oldVersion,
 				int newVersion) {
-			Log.w("Example", 
-					"Upgrading database, this will drop tables and recreate.");
+			Log.w("Example", "Upgrading database, this will drop tables and recreate.");
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 			onCreate(db);
 		}

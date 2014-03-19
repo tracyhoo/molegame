@@ -15,12 +15,12 @@ public class UIModel {
 	public static final int FIELD_VIRGIN = 111;
 	public static final int FIELD_MARK = 999;
 
-	public static final int MOLE_IMG_NUM = 6;
+	public static final int MOLE_IMG_NUM = 7;
 	
 	
 	private int hitCount = 0;
 	
-	
+	//todo shall this be move into constant?
 	public static final int MAX_TIME = 30000;
 
 	public static final int GAME_ATTRIBUTE_TOTAL_LEVEL = 6;
@@ -85,27 +85,23 @@ public class UIModel {
 		
 		if(mTotalTime + timeInterval >= MAX_TIME){
 			mGameStatus = GAME_STATUS_GAMEOVER;
-		}
-		else{
+		}else{
 			mTotalTime += timeInterval;
 			
 			int holeID;
 			
 			for(int i=0; i<mMoles.length;i++){
-				if(!mMoles[i].isPlaced())
-					place(mMoles[i],-1);
-				else{
+				if(!mMoles[i].isPlaced()) {
+                    place(mMoles[i],-1);
+                } else{
 					holeID = mMoles[i].refresh(timeInterval);
 					
 					if(holeID != -1){
 						mHoles[holeID].unsetOccupied();
 						place(mMoles[i],holeID);
-						
 					}
 				}
-
 			}
-			
 		}
 	}
 
@@ -122,28 +118,32 @@ public class UIModel {
 	}
 	
 	public void buildPaintArea(){
+        //in each repaint, put the exact amount of moles to canvas
 		for(int i=0;i<mMoles.length;i++){
 			
 //			Log.d("-------------i is: ",Integer.toString(i));
 			if(!mMoles[i].isPlaced()){
-				place(mMoles[i],-1);
+				place(mMoles[i], -1);
 			}
 		}
 	}
 
 	private void place(MoleData m, int n){
 		int i = -1;
-		
+
+        //randomly pick an unoccupied hole to place the mole
 		i = rand.nextInt(HOLE_AMOUNT);
 		
-		if(i >= HOLE_AMOUNT)
-			i = i % HOLE_AMOUNT;
+		if(i >= HOLE_AMOUNT){
+            i = i % HOLE_AMOUNT;
+        }
 		
 		while(mHoles[i].isOccupied() || i==n){
 			i++;
 			
-			if(i >= HOLE_AMOUNT)
-				i = i % HOLE_AMOUNT;
+			if(i >= HOLE_AMOUNT){
+                i = i % HOLE_AMOUNT;
+            }
 		}
 
 		RectArea retVal = mHoles[i].setOccupied();
@@ -179,10 +179,11 @@ public class UIModel {
 	}
 
 	/*
-	 * check if the click hit a mole or not
+	 * check what has been hit. 0 for nothing, 1 for a mole, 2 for a bomb
 	 */
-	public boolean checkSelection(int x, int y){
+	public int checkSelection(int x, int y){
 		MoleData checkedMole = null;
+        int retVal = 0;
 		
 		for(MoleData curMoleData : mMoles){
 			if(curMoleData.mMinX < x && curMoleData.mMaxX > x
@@ -192,24 +193,30 @@ public class UIModel {
 		}
 		
 		if(checkedMole != null){
-			hitCount++;
+            if(checkedMole.isBomb()){
+                hitCount = hitCount - 2;
+                retVal = 2;
+            } else{
+                hitCount++;
+                retVal = 1;
+            }
+            //free up the space
 			int holeID = checkedMole.free();
 			if(holeID != -1){
 				mHoles[holeID].unsetOccupied();
-
 			}
-			
+
+            //place spark to indicate A hit
 			mSpark = new SparkData(mHoles[holeID].mMinX,
 					mHoles[holeID].mMinY,
 					mHoles[holeID].mMaxX,
 					mHoles[holeID].mMinY+spark_height);
 
-			
-			
+            //repaint canvas
 			buildStage();
-			return true;
+			return retVal;
 		}
-		return false;
+		return retVal;
 	}
 	
 	public HoleData[] getHoles(){
@@ -225,8 +232,7 @@ public class UIModel {
 	}
 
 	public String getTimeText() {
-		String time = String.valueOf(
-				(MAX_TIME - mTotalTime) / 1000);
+		String time = String.valueOf((MAX_TIME - mTotalTime) / 1000);
 		if (time.length() < 2) {
 			time = "0" + time;
 		}
@@ -343,6 +349,8 @@ public class UIModel {
 		
 		int posOffsetX;
 		int posOffsetY;
+
+        //place holes
 		for (int i = 0; i < HOLE_AMOUNT; i++) {
 			posOffsetX = i % HOLE_AMOUNT_X;
 			posOffsetY = i / HOLE_AMOUNT_X;

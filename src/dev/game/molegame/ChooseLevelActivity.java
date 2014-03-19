@@ -170,10 +170,14 @@ public class ChooseLevelActivity extends Activity{
             
             Bitmap bmp = null;
             Log.d(TAG,"position is "+ Integer.toString(position));
-            if(position <= level)
-            	bmp = unlocked;
-            else
-            	bmp = locked;
+
+            //place lock/unlock icon to the canvas
+            if(position <= level) {
+                bmp = unlocked;
+            } else {
+                bmp = locked;
+            }
+
 
             imageView.setImageBitmap(bmp);  
             imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);  

@@ -31,10 +31,10 @@
 	<string name="gameover_dialog_textview_current_record">Current Record:</string>
 
 	<string name="ranking_title_loading_info">Loading. Please wait....</string>
-	<string name="ranking_title_no">NO.</string>
-	<string name="ranking_title_name">NAME</string>
-	<string name="ranking_title_record">REC(s)</string>
-	<string name="ranking_title_date">DATE</string>
+	<string name="ranking_title_no">Rank</string>
+	<string name="ranking_title_name">Name</string>
+	<string name="ranking_title_record">score</string>
+	<string name="ranking_title_date">Date</string>
 
 	<string name="options_sounds_summary">-Play Background Sounds.</string>
 	<string name="options_vibrate_summary">-Action Vibrate Effect.</string>

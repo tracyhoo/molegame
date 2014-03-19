@@ -21,7 +21,7 @@ public class MoleData {
 
 	public int mMaxY;
 	
-	public int imageID;
+	public int imageID;     //image id from 0 to 5 are moles, 6 is a bomb
 	
 	private boolean mPlaced;
 	private long mPlacedTime;
@@ -32,6 +32,10 @@ public class MoleData {
 	public boolean isExpired(long interval){
 		return (mPlacedTime + interval) >= PLACE_LIMIT;
 	}
+
+    public boolean isBomb(){
+        return imageID == 6;
+    }
 	
 
 	
@@ -96,7 +100,8 @@ public class MoleData {
 		mMinY = 0;
 		mMaxX = 0;
 		mMinY = 0;
-		
+
+        //return value is the hole id that shall be freed
 		return retVal;
 	}
 	
