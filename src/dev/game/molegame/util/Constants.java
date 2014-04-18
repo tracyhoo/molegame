@@ -30,6 +30,11 @@ public interface Constants {
      */
     public static final int[] MOLE_AMOUNT_BY_LEVEL = {1, 2, 2, 3, 3, 3, 3, 4, 4};
 
+    /**
+     * timeout for each game
+     */
+    public static final int MAX_TIME = 30000;
+
 /*	public static final String PREFERENCE_MIXEDCOLOR_RANKING_INFO = "MIXED_COLOR_RANKING_INFOS";
 	public static final String PREFERENCE_KEY_RANKING_UID = "org.void1898.mixedcolor.ranking.uid";
 	public static final String PREFERENCE_KEY_RANKING_NAME = "org.void1898.mixedcolor.ranking.name";

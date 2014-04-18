@@ -20,9 +20,6 @@ public class UIModel {
 	
 	
 	private int hitCount = 0;
-	
-	//todo shall this be move into constant?
-	public static final int MAX_TIME = 30000;
 
 	public static final int GAME_ATTRIBUTE_TOTAL_LEVEL = 6;
 
@@ -84,7 +81,7 @@ public class UIModel {
 		mTimeLogger = System.currentTimeMillis();
 		long timeInterval = mTimeLogger - lastTimeLogger;
 		
-		if(mTotalTime + timeInterval >= MAX_TIME){
+		if(mTotalTime + timeInterval >= Constants.MAX_TIME){
 			mGameStatus = GAME_STATUS_GAMEOVER;
 		}else{
 			mTotalTime += timeInterval;
@@ -233,7 +230,7 @@ public class UIModel {
 	}
 
 	public String getTimeText() {
-		String time = String.valueOf((MAX_TIME - mTotalTime) / 1000);
+		String time = String.valueOf((Constants.MAX_TIME - mTotalTime) / 1000);
 		if (time.length() < 2) {
 			time = "0" + time;
 		}
@@ -241,7 +238,7 @@ public class UIModel {
 	}
 	
 	public float getTimePercent(){
-		return 1 - (float) mTotalTime / MAX_TIME;
+		return 1 - (float) mTotalTime / Constants.MAX_TIME;
 	}
 
 	public int getFinalRecord(){
