@@ -8,6 +8,7 @@ import dev.game.molegame.data.MoleData;
 import dev.game.molegame.data.RectArea;
 import dev.game.molegame.data.SparkData;
 import android.util.Log;
+import dev.game.molegame.util.Constants;
 
 public class UIModel {
 
@@ -242,10 +243,10 @@ public class UIModel {
 	public float getTimePercent(){
 		return 1 - (float) mTotalTime / MAX_TIME;
 	}
-	
+
 	public int getFinalRecord(){
 		return hitCount;
-	}	
+	}
 
 	public int getStatus() {
 		return mGameStatus;
@@ -260,62 +261,10 @@ public class UIModel {
 	}
 	
 	private void initLevelParameters(){
-		switch(mLevel){
-		case 0:
-			HOLE_AMOUNT_X = 3;
-			HOLE_AMOUNT_Y = 2;
-			HOLE_AMOUNT = 6;
-			MOLE_AMOUNT = 1;
-			break;
-		case 1:
-			HOLE_AMOUNT_X = 3;
-			HOLE_AMOUNT_Y = 2;
-			HOLE_AMOUNT = 6;
-			MOLE_AMOUNT = 2;
-			break;
-		case 2:
-			HOLE_AMOUNT_X = 3;
-			HOLE_AMOUNT_Y = 3;
-			HOLE_AMOUNT = 9;
-			MOLE_AMOUNT = 2;
-			break;
-		case 3:
-			HOLE_AMOUNT_X = 3;
-			HOLE_AMOUNT_Y = 3;
-			HOLE_AMOUNT = 9;
-			MOLE_AMOUNT = 3;
-			break;
-		case 4:
-			HOLE_AMOUNT_X = 3;
-			HOLE_AMOUNT_Y = 3;
-			HOLE_AMOUNT = 9;
-			MOLE_AMOUNT = 3;
-			break;
-		case 5:
-			HOLE_AMOUNT_X = 3;
-			HOLE_AMOUNT_Y = 3;
-			HOLE_AMOUNT = 9;
-			MOLE_AMOUNT = 3;
-			break;
-		case 6:
-			HOLE_AMOUNT_X = 3;
-			HOLE_AMOUNT_Y = 4;
-			HOLE_AMOUNT = 12;
-			MOLE_AMOUNT = 3;
-			break;
-		case 7:
-			HOLE_AMOUNT_X = 3;
-			HOLE_AMOUNT_Y = 4;
-			HOLE_AMOUNT = 12;
-			MOLE_AMOUNT = 4;
-			break;
-		case 8:
-			HOLE_AMOUNT_X = 3;
-			HOLE_AMOUNT_Y = 4;
-			HOLE_AMOUNT = 12;
-			MOLE_AMOUNT = 4;
-			break;
-		}
+        HOLE_AMOUNT_X = Constants.HOLE_LAYOUT_BY_LEVEL[mLevel][0];
+        HOLE_AMOUNT_Y = Constants.HOLE_LAYOUT_BY_LEVEL[mLevel][1];
+        HOLE_AMOUNT = HOLE_AMOUNT_X * HOLE_AMOUNT_Y;
+        MOLE_AMOUNT = Constants.MOLE_AMOUNT_BY_LEVEL[mLevel];
 	}
 	
 	public UIModel(RectArea canvasArea, int level) {

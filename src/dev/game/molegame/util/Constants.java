@@ -21,6 +21,15 @@ public interface Constants {
 	public static final String PREFERENCE_KEY_VIBRATE = "dev.game.molegame.vibrate";
 	public static final String PREFERENCE_KEY_SHOWTIPS = "dev.game.molegame.showtips";
 
+    /**
+     * {x,y} where x indicates how many holes on each row and y indicates how many rows
+     */
+    public static final int[][] HOLE_LAYOUT_BY_LEVEL = {{3,2}, {3,2}, {3,3}, {3,3}, {3,3}, {3,3}, {3,4}, {3,4}, {3,4}};
+    /**
+     * the maximum amount of moles that could show up at a time
+     */
+    public static final int[] MOLE_AMOUNT_BY_LEVEL = {1, 2, 2, 3, 3, 3, 3, 4, 4};
+
 /*	public static final String PREFERENCE_MIXEDCOLOR_RANKING_INFO = "MIXED_COLOR_RANKING_INFOS";
 	public static final String PREFERENCE_KEY_RANKING_UID = "org.void1898.mixedcolor.ranking.uid";
 	public static final String PREFERENCE_KEY_RANKING_NAME = "org.void1898.mixedcolor.ranking.name";
