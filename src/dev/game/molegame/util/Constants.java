@@ -12,7 +12,7 @@ public interface Constants {
     /**
      * scores needed to qualify to next level
      */
-	public static final int[] QUALIFICATION = {20,30,40,50,60,70,80,90};
+	public static final int[] QUALIFICATION = {20,30,40,50,60,70,80,90,100};
     /**
      * total number of level
      */
