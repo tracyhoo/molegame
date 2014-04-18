@@ -1,5 +1,6 @@
 package dev.game.molegame;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,7 +43,9 @@ public class RankingActivity extends Activity {
 		dh = new DataHelper(this.getApplicationContext());
 		scorePairs = dh.getAllRecords();
 
-		TableRow tableRow = null;
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        TableRow tableRow = null;
 		TextView tableView = null;
 
 		tableRow = new TableRow(table.getContext());
@@ -55,13 +58,13 @@ public class RankingActivity extends Activity {
 		tableRow.addView(tableView);
 		tableView = new TextView(RankingActivity.this);
 		tableView.setText(R.string.ranking_title_name);
-		tableView.setWidth(90);
+		tableView.setWidth(80);
 		tableView.setPaddingRelative(25, 60, 0, 0);
 		tableView.setTextColor(0xFFF28530);
 		tableRow.addView(tableView);
 		tableView = new TextView(RankingActivity.this);
 		tableView.setText(R.string.ranking_title_record);
-		tableView.setWidth(65);
+		tableView.setWidth(55);
 		tableView.setPaddingRelative(25, 60, 0, 0);
 		tableView.setTextColor(0xFFA7DBD7);
 		tableRow.addView(tableView);
@@ -95,7 +98,7 @@ public class RankingActivity extends Activity {
 			tableView.setTextColor(0xFFA7DBD7);
 			tableRow.addView(tableView);
 			tableView = new TextView(RankingActivity.this);
-			tableView.setText(new Date(sp.time).toGMTString());
+            if(sp.time != 0) tableView.setText(dt.format(new Date(sp.time)));
 			tableView.setWidth(85);
 			tableView.setPaddingRelative(25, 10, 0, 0);
 			tableView.setTextColor(0xFFFFEA21);
