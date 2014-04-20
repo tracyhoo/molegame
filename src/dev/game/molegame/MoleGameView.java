@@ -296,15 +296,7 @@ public class MoleGameView extends SurfaceView implements
         mHoleImage = mContext.getResources().getDrawable(R.drawable.root);
 
         //set the number of moles to show depending on current level
-        if( mLevel == 0 ){
-            mMoleImage = new Drawable[1];
-        }else if(mLevel ==1 || mLevel ==2){
-            mMoleImage = new Drawable[2];
-        }else if(mLevel > 2 && mLevel < 7){
-            mMoleImage = new Drawable[3];
-        }else{
-            mMoleImage = new Drawable[4];
-        }
+        mMoleImage = new Drawable[Constants.MOLE_AMOUNT_BY_LEVEL[mLevel]];
 
 
         mTimeTotalImage = mContext.getResources().getDrawable(R.drawable.time_total);
