@@ -38,6 +38,9 @@ public class UIModel {
 	public static final int EFFECT_FLAG_MISS = 3;
 	public static final int EFFECT_FLAG_HIT = 4;
 
+    private static final int HIT_MOLE = 1;
+    private static final int HIT_BOMB = 2;
+
 	
 
 	
@@ -148,12 +151,22 @@ public class UIModel {
 		m.imageID = changeImage(m.imageID);
 
 		int offsetX = (int)(hole_width * 0.1);
-		
-		m.place(i,
-				retVal.mMinX + offsetX,
-				retVal.mMaxY - mole_height,
-				retVal.mMaxX - offsetX,
-				retVal.mMaxY);
+        int offsetY = (int)(hole_height * 1.1);
+
+        if(m.isBomb()){
+            m.place(i,
+                    retVal.mMinX + offsetX,
+                    retVal.mMinY + offsetX,
+                    retVal.mMaxX - offsetX,
+                    retVal.mMaxY - offsetX);
+        }else{
+            m.place(i,
+                    retVal.mMinX + offsetX,
+                    retVal.mMaxY - offsetY,
+                    retVal.mMaxX - offsetX,
+                    retVal.mMaxY);
+        }
+
 		
 		
 /*		int offsetX = (int)(retVal.getWidth() * 0.1);
@@ -187,16 +200,17 @@ public class UIModel {
 			if(curMoleData.mMinX < x && curMoleData.mMaxX > x
 					&& curMoleData.mMinY < y && curMoleData.mMaxY > y){
 				checkedMole = curMoleData;
+                break;
 			}
 		}
 		
 		if(checkedMole != null){
             if(checkedMole.isBomb()){
                 hitCount = hitCount - 2;
-                retVal = 2;
+                retVal = HIT_BOMB;
             } else{
                 hitCount++;
-                retVal = 1;
+                retVal = HIT_MOLE;
             }
             //free up the space
 			int holeID = checkedMole.free();
