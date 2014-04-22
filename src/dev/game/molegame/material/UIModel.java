@@ -129,6 +129,12 @@ public class UIModel {
 		}
 	}
 
+    /**
+     * place mole m to some hole except the hole with id n(because last time it was placed at n)
+     * //todo refactor this part cuz api is confusing
+     * @param m
+     * @param n
+     */
 	private void place(MoleData m, int n){
 		int i = -1;
 
