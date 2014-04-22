@@ -166,16 +166,6 @@ public class UIModel {
                     retVal.mMaxX - offsetX,
                     retVal.mMaxY);
         }
-
-		
-		
-/*		int offsetX = (int)(retVal.getWidth() * 0.1);
-		int offsetY = (int)(retVal.getHeight() * 0.1);
-		m.place(i, 
-				retVal.mMinX + offsetX,
-				retVal.mMinY + offsetY,
-				retVal.mMaxX - offsetX,
-				retVal.mMaxY - offsetY);*/
 		
 	}
 	
